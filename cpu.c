@@ -555,7 +555,7 @@ int execute2(APEX_CPU *cpu)
         memset(&cpu->stage[EX1], 0, sizeof(CPU_Stage));
         cpu->regs_valid[ex1stage->rd] = 16843009;
         cpu->pc = stage->pc + stage->imm;
-      }*+
+      }
     }
 
     if (strcmp(stage->opcode, "BNZ") == 0)
