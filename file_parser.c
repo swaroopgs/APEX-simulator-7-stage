@@ -62,7 +62,7 @@ create_APEX_instruction(APEX_Instruction* ins, char* buffer)
   }
 
   if (strcmp(ins->opcode, "ADD") == 0 || strcmp(ins->opcode, "SUB") == 0 || strcmp(ins->opcode, "MUL") == 0 || strcmp(ins->opcode, "LDR") == 0 || strcmp(ins->opcode, "AND") == 0
-  || strcmp(ins->opcode, "OR") == 0 || strcmp(ins->opcode, "XOR") == 0) {
+  || strcmp(ins->opcode, "OR") == 0 || strcmp(ins->opcode, "EX-OR") == 0) {
     ins->rd = get_num_from_string(tokens[1]);
     ins->rs1 = get_num_from_string(tokens[2]);
     ins->rs2 = get_num_from_string(tokens[3]);
