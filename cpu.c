@@ -114,11 +114,6 @@ int get_code_index(int pc)
 static void
 print_instruction(CPU_Stage *stage)
 {
-  // if (stage->stalled == 1 || stage->busy == 1)
-  // {
-  //   printf("%s ", "No Op");
-  //   return;
-  // }
 
   if (strcmp(stage->opcode, "STORE") == 0)
   {
@@ -742,11 +737,6 @@ int execute2(APEX_CPU *cpu)
 
     if (strcmp(stage->opcode, "LOAD") == 0 || strcmp(stage->opcode, "LDR") == 0)
     {
-      // if (cpu->stage[EX1].rd == cpu->stage[DRF].rs1 || cpu->stage[EX1].rd == cpu->stage[DRF].rs2 || cpu->stage[EX1].rd == cpu->stage[DRF].rs3)
-      // {
-
-      // cpu->stage[DRF].buffer = stage->buffer;
-      // }
       cpu->isForwarded = 0;
       cpu->stage[DRF].stalled = 1;
       cpu->stage[F].stalled = 1;
@@ -773,7 +763,6 @@ int execute2(APEX_CPU *cpu)
     if (ENABLE_DEBUG_MESSAGES)
     {
       printf("Execute2 : No operation\n");
-      // print_stage_content("Execute2", stage);
     }
   }
 
@@ -817,10 +806,6 @@ int memory1(APEX_CPU *cpu)
 
     if (strcmp(stage->opcode, "LOAD") == 0 || strcmp(stage->opcode, "LDR") == 0)
     {
-      // if (cpu->stage[MEM1].rd == cpu->stage[DRF].rs1 || cpu->stage[MEM1].rd == cpu->stage[DRF].rs2 || cpu->stage[MEM1].rd == cpu->stage[DRF].rs3)
-      // {
-      // cpu->stage[DRF].buffer = stage->buffer;
-      // }
       cpu->isForwarded = 0;
       cpu->stage[DRF].stalled = 1;
       cpu->stage[F].stalled = 1;
@@ -847,7 +832,6 @@ int memory1(APEX_CPU *cpu)
     if (ENABLE_DEBUG_MESSAGES)
     {
       printf("Memory1 : No operation\n");
-      // print_stage_content("Memory1", stage);
     }
   }
 
@@ -901,28 +885,10 @@ int memory2(APEX_CPU *cpu)
         zFlag = 0;
       }
     }
-
-    // if (cpu->stage[MEM2].rd == cpu->stage[DRF].rs1 || cpu->stage[MEM2].rd == cpu->stage[DRF].rs2 || cpu->stage[MEM2].rd == cpu->stage[DRF].rs3)
-    // {
-    // if (strcmp(stage->opcode, "LOAD") == 0 || strcmp(stage->opcode, "LDR") == 0)
-    // {
-    //   // if (cpu->stage[MEM1].rd == cpu->stage[DRF].rs1 || cpu->stage[MEM1].rd == cpu->stage[DRF].rs2 || cpu->stage[MEM1].rd == cpu->stage[DRF].rs3)
-    //   // {
-    //   // cpu->stage[DRF].buffer = stage->buffer;
-    //   // }
-    //   cpu->isForwarded = 1;
-    //   cpu->stage[DRF].stalled = 0;
-    //   cpu->stage[F].stalled = 0;
-    // }
-    // else
-    // {
     cpu->isForwarded = 1;
     cpu->stage[DRF].stalled = 0;
     cpu->stage[F].stalled = 0;
     cpu->forwardedValues[stage->rd] = stage->buffer;
-    // }
-    // cpu->stage[DRF].buffer = stage->buffer;
-    // }
 
     /* Copy data from decode latch to execute latch*/
     cpu->stage[WB] = cpu->stage[MEM2];
@@ -1022,7 +988,6 @@ int writeback(APEX_CPU *cpu)
     if (ENABLE_DEBUG_MESSAGES)
     {
       printf("Writeback : No operation\n");
-      // print_stage_content("Writeback", stage);
     }
   }
 
