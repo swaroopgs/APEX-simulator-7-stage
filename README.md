@@ -3,7 +3,7 @@ APEX Pipeline Simulator
 ---------------------------------------------------------------------------------
 A simple implementation of 7 Stage APEX Pipeline
 
-Swaroop Gowdra Shanthakumar (sraghav2@binghamton.edu)
+Swaroop Gowdra Shanthakumar
 
 
 Notes:
